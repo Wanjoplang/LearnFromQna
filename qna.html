@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA</title>
+    <link rel="stylesheet" href="output.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/34.2.0/ckeditor.min.js" integrity="sha512-rpy6z/f66611MGAFKrP+PE8q9TFUtG5otj76nLKLK/WYesZL1xgVeFzf37jyUWM0PHaF5vJxfrwIYjpG8Mwjag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="firebaseConfig.js" defer></script>
+    <script src="qna.js" type="module" defer></script>
+</head>
+<body class="px-10 pt-5">
+    <nav class="flex items-center justify-between">
+        <span class="text-2xl font-semibold">QnA</span>
+    </nav>
+    <section class="mt-10" id="view">
+        <div class="border-2 rounded-lg border-gray-500">
+            <div class="flex items-center bg-gray-200 rounded-t-lg">
+                <span class="mx-2 font-semibold text-sm">Category</span>
+                <select class="w-full bg-gray-300 p-2 outline-none rounded-tr-lg" id="view_categories">
+                    <option value="">Loading categories...</option>
+                </select>
+            </div>
+            <div class="flex p-3">                
+                <input type="search" id="search_text" list="queries" placeholder="Try typing 'English' to search.." class="w-full outline-none">
+                <datalist id="queries"></datalist>
+                <button class="mr-1" id="search_button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="#701a75" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <h1 class="my-4 text-gray-600 font-semibold flex justify-between">
+            <span class="text-left text-xl font-semibold">List of QnAs</span>
+        </h1>
+        <div id="content">
+            <div class="shadow-md p-2 bg-gray-100 border-l-slate-700 border-2 mb-5 hidden">
+                <div class="flex items-center mb-2">
+                    <small class="mr-2"><b>Category:</b></small>
+                    <span></span>
+                </div>
+                <div class="grid grid-flow-row mb-2">
+                    <small><b>Q No. #</b></small>
+                    <span></span>
+                </div>
+                <div class="grid grid-flow-row">
+                    <small><b>Answer</b></small>
+                    <span></span>
+                </div>
+            </div>
+        </div>        
+    </section>
+</body>
+</html>
