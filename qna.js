@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
 import { getDatabase, ref, onValue, push, set, update } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -11,7 +11,7 @@ const view_categories = document.querySelector("#view_categories");
 const queries = document.querySelector("#queries");
 const search_button = document.querySelector("#search_button");
 const search_text = document.querySelector("#search_text");
-const category_tbody = document.querySelector("#category_tbody");
+const signout = document.querySelector("#signout");
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -23,7 +23,6 @@ onAuthStateChanged(auth, (user) => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
-        getCategories(uid);
         getQueries();
         getQna(uid);
 
@@ -51,28 +50,24 @@ onAuthStateChanged(auth, (user) => {
                 }
             }
         });
+
+        signout.addEventListener("click",function(e){
+            if(confirm("Do you want to sign out?")){
+                signOut(auth).then(() => {
+                    // Sign-out successful.
+                }).catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode, errorMessage);
+                    alert(errorMessage);
+                });
+            }
+        });
     } else {
         // User is signed out
         window.open("index.html","_self");
     }
 });
-
-function getCategories(userId){
-    onValue(ref(db, 'questions_answers/categories'), (snapshot) => {
-        add_categories.innerHTML = "";
-        category_tbody.innerHTML = "";
-        const data = snapshot.val();
-        for(let d in data){
-            add_categories.innerHTML += `<option>${data[d].category}</option>`;
-            category_tbody.innerHTML += `
-                <tr class="hover:bg-gray-100">
-                    <td class="p-2">${data[d].category}</td>
-                    <td class="p-2 text-right"><input type="checkbox" class="checkbox"></td>
-                </tr>
-            `;
-        }
-    });
-}
 
 function getQueries(){
     onValue(ref(db, 'questions_answers/queries'), (snapshot) => {
