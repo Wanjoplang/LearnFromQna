@@ -76,7 +76,7 @@ function signIn(auth, email, password){
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        alert(errorMessage);
+        alert("User is not registered. Please Sign up to proceed.");
     });
 }
 
