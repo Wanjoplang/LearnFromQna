@@ -124,19 +124,3 @@ function showData(data){
         content.innerHTML += contentinnerHTML;
     }
 }
-
-ClassicEditor
-.create( document.querySelector('#editor1') )
-.then(e=>{
-    editor1 = e;
-})
-.catch( error => {
-});
-
-ClassicEditor
-.create( document.querySelector('#editor2') )
-.then(e=>{
-    editor2 = e;
-})
-.catch( error => {
-});
