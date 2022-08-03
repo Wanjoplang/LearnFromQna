@@ -48,14 +48,11 @@ onAuthStateChanged(auth, (user)=>{
 function signUp(auth, email, password){
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        // User created 
         const user = userCredential.user;
-        console.log("User Created");
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
         alert(errorMessage);
     });
 }
@@ -64,14 +61,11 @@ function signIn(auth, email, password){
     console.log(auth, email, password);
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
-        console.log("User Signed In");
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
         alert("User is not registered. Please Sign up to proceed.");    
     });
 }
