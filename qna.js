@@ -1,9 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
-import { getDatabase, ref, onValue, push, set, update } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-database.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-database.js";
 
 const view = document.querySelector("#view");
 const content = document.querySelector("#content");
@@ -13,15 +10,12 @@ const search_button = document.querySelector("#search_button");
 const search_text = document.querySelector("#search_text");
 const signout = document.querySelector("#signout");
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         getQueries();
         getQna(uid);
@@ -54,17 +48,14 @@ onAuthStateChanged(auth, (user) => {
         signout.addEventListener("click",function(e){
             if(confirm("Do you want to sign out?")){
                 signOut(auth).then(() => {
-                    // Sign-out successful.
                 }).catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log(errorCode, errorMessage);
                     alert(errorMessage);
                 });
             }
         });
     } else {
-        // User is signed out
         window.open("index.html","_self");
     }
 });
@@ -106,17 +97,17 @@ function getQna(userId){
 function showData(data){
     for(let d in data){
         let contentinnerHTML = `
-            <div class="shadow-md p-2 bg-gray-100 border-l-slate-700 border-2 mb-5">
+            <div class="shadow-sm p-2 border-l-slate-700 border-2 mb-5">
                 <div class="flex items-center mb-2">
-                    <small class="mr-2"><b>Category:</b></small>
+                    <small class="mr-2 font-bold">Category:</small>
                     <span>${data[d].category}</span>
                 </div>
                 <div class="grid grid-flow-row mb-2">
-                    <small><b>Question</b></small>
+                    <small class="font-bold">Question</small>
                     <span>${data[d].question}</span>
                 </div>
                 <div class="grid grid-flow-row">
-                    <small><b>Answer</b></small>
+                    <small class="font-bold">Answer</small>
                     <span>${data[d].answer}</span>
                 </div>
             </div>

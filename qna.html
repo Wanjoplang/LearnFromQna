@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn from QnA</title>
     <link rel="stylesheet" href="output.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/34.2.0/ckeditor.min.js" integrity="sha512-rpy6z/f66611MGAFKrP+PE8q9TFUtG5otj76nLKLK/WYesZL1xgVeFzf37jyUWM0PHaF5vJxfrwIYjpG8Mwjag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="firebaseConfig.js" defer></script>
     <script src="qna.js" type="module" defer></script>
 </head>
@@ -19,7 +20,7 @@
             </svg>
         </div>
     </nav>
-    <div class="p-5 sticky top-0 bg-white">
+    <div class="p-2 sticky top-0 bg-white">
         <div class="border-2 rounded-lg border-gray-500">
             <div class="flex items-center bg-gray-200 rounded-t-lg">
                 <span class="mx-2 font-semibold text-sm">Category</span>
@@ -38,26 +39,26 @@
             </div>
         </div>
     </div>
-    <div class="p-5">
-        <h1 class="my-4 text-gray-600 font-semibold flex justify-between">
+    <div class="p-2">
+        <h1 class="mb-4 text-gray-600 font-semibold flex justify-between">
             <span class="text-left text-xl font-semibold">List of QnAs</span>
         </h1>
         <div id="content">
-            <div class="shadow-md p-2 bg-gray-100 border-l-slate-700 border-2 mb-5 hidden">
+            <div class="shadow-sm p-2 border-l-slate-700 border-2 mb-5">
                 <div class="flex items-center mb-2">
-                    <small class="mr-2"><b>Category:</b></small>
+                    <small class="mr-2 font-bold">Category:</small>
                     <span></span>
                 </div>
                 <div class="grid grid-flow-row mb-2">
-                    <small><b>Q No. #</b></small>
+                    <small class="font-bold">Question</small>
                     <span></span>
                 </div>
                 <div class="grid grid-flow-row">
-                    <small><b>Answer</b></small>
+                    <small class="font-bold">Answer</small>
                     <span></span>
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
 </body>
 </html>
